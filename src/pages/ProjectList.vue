@@ -1,12 +1,12 @@
 <template>
-    <div class="container py-5">
+    <div class="container py-5" v-if="projects != 0">
 
         <div class="d-flex justify-content-between pb-5">
             <h1 class="text-white">Progetti</h1>
             <div>
-                <a class="btn btn-primary me-3" href="{{ route('admin.dashboard') }}">Torna alla dashboard</a>
-                <a class="btn btn-success" href="{{ route('admin.projects.create') }}">Crea nuovo Progetto</a>
-
+                <router-link :to="{name: 'home'}" class="btn btn-primary">
+                    Torna alla Home
+                </router-link>
             </div>
 
         </div>
@@ -35,6 +35,7 @@
               </div>
             </div>
           </div>
+          
           <nav aria-label="Page navigation example">
                   <ul class="pagination">
                       <li class="page-item"><button :class="{ 'page-link': true, 'disabled': currentPage === 1 }"
@@ -48,39 +49,41 @@
                   </ul>
               </nav>
       </div>
+      <div v-else><Loader/></div>
 </template>
 
 <script>
     import axios from 'axios';
+import Loader from '../components/Loader.vue';
     export default {
-    name: 'ProjectList',
+    name: "ProjectList",
     data() {
         return {
-            title: 'Ciao',
+            title: "Ciao",
             projects: [],
-            apiUrl: 'http://127.0.0.1:8000/api',
-            imgBasePath: 'http://127.0.0.1:8000/storage/',
+            apiUrl: "http://127.0.0.1:8000/api",
+            imgBasePath: "http://127.0.0.1:8000/storage/",
             currentPage: 1,
             lastPage: null,
-        }
+        };
     },
     methods: {
         getData(numPage) {
             axios.get(`${this.apiUrl}/projects`, {
                 params: {
-                    'page': numPage
+                    "page": numPage
                 }
             }).then((res) => {
                 this.projects = res.data.results.data;
                 this.currentPage = res.data.results.current_page;
                 this.lastPage = res.data.results.last_page;
-            })
+            });
         }
     },
     mounted() {
         this.getData(1);
-    }
-
+    },
+    components: { Loader }
 }
 </script>
 
