@@ -76,7 +76,7 @@ export default {
                           :class="{ 'page-link': true, 'active': currentPage === n }" @click="getData(n)">{{ n }}</button>
                   </li>
 
-                  <li class="page-item"><button :class="{ 'page-link': true, 'disabled': currentPage === 4 }"
+                  <li class="page-item"><button :class="{ 'page-link': true, 'disabled': currentPage === 3 }"
                           @click="getData(currentPage + 1)">Next</button></li>
               </ul>
           </nav>
