@@ -12,7 +12,7 @@
         </div>
           <div class="row">
             <div class="col-12 col-sm-6 col-md-3 px-3 mb-5" v-for="project in projects">
-              <div class="card bg-dark text-white">
+              <div class="card text-white">
                 <img :src="project.image" class="card-img-top" alt="{{ project.title }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ project.title }}</h5>
@@ -88,5 +88,8 @@ import Loader from '../components/Loader.vue';
 </script>
 
 <style lang="scss" scoped>
-
+@use '../assets/styles/partials/variables' as *;
+.card{
+    background: $bg-color;
+}
 </style>

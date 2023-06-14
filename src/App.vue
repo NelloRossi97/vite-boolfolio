@@ -1,8 +1,9 @@
 <script>
+import FooterComponent from './components/FooterComponent.vue';
 import HeaderComponent from './components/HeaderComponent.vue';
 export default {
     name: "App",
-    components: { HeaderComponent }
+    components: { HeaderComponent, FooterComponent }
 }
 </script>
 
@@ -13,9 +14,7 @@ export default {
     <router-view></router-view>
   </main>
   
-  <footer>
-    <h3>Footer</h3>
-  </footer>
+  <FooterComponent/>
 </template>
 
 <style scoped>
