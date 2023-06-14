@@ -1,12 +1,43 @@
 <template>
-    <div>
-        <h1>Singolo Prodotto</h1>
+    <div v-if="project">
+        <h1>{{ project.title }}</h1>
+        <img :src="project.image" :alt="project.title">
+        <span class="badge rounded-pill text-bg-primary" v-for="tag in project.tags">{{ tag.title }}</span>
     </div>
+    <div v-else><i class="fa-solid fa-spinner fa-spin"></i></div>
+    
 </template>
 
 <script>
+import axios from 'axios'
+import { router } from '../router';
     export default {
-        name: 'SingleProject'
+    name: 'SingleProject',
+    data() {
+        return {
+                project: null,
+                apiUrl: 'http://127.0.0.1:8000/api',
+                imgBasePath: 'http://127.0.0.1:8000/storage/',
+            }
+    },
+    methods: {
+        getProject() {
+            axios.get(`${this.apiUrl}/projects/${ this.$route.params.slug }`).then((res) => {
+                console.log(res.data.results);
+                if (res.data.success) {
+                    this.project = res.data.results;
+                } else {
+                    this.$router.push({name: 'not-found'})
+                }
+                    
+                })
+            }
+    },
+    mounted() {
+            // console.log(this.$router);
+            // console.log(this.$route);
+        this.getProject();
+        }
     }
 </script>
 

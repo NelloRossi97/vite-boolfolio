@@ -20,8 +20,9 @@
                     <span class="card-text">Tecnologia: <strong>{{ project.type.name }}</strong></span><br>
                     <span class="card-text">Tags: <strong v-for="tag in project.tags"> {{ tag.name }} </strong></span>
                     <div class="d-flex justify-content-between pt-4">
-                      <a href="#" class="btn btn-primary"><i
-                              class="fa-solid fa-eye"></i></a>
+                      <router-link :to="{name: 'single-project', params:{slug: project.slug}}" class="btn btn-primary">
+                        <i class="fa-solid fa-eye"></i>
+                      </router-link>
                       <a href="#" class="btn btn-warning text-white"><i
                               class="fa-solid fa-pencil"></i></a>
                       <form action="#" method="POST">

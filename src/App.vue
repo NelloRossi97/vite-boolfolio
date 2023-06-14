@@ -8,7 +8,11 @@ export default {
 
 <template>
   <HeaderComponent/>
-  <router-view></router-view>
+  
+  <main>
+    <router-view></router-view>
+  </main>
+  
   <footer>
     <h3>Footer</h3>
   </footer>
